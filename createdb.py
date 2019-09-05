@@ -62,11 +62,10 @@ with open('reactions.csv') as f:
                     to_insert+=ls[i]+"', '"+str(float(ls[0])*float(ls[i+1])*float(row[0]))+"', '"
         for i in range(13,19,2):
             if ls[i+1]=='':
-    
+                ls[i]="none"
                 ls[i+1]=0
             to_insert+=ls[i]+"', '"+str(float(ls[0])*float(ls[i+1]))+"', '"
         for i in range(19,22):
             to_insert+=(ls[i]+(i<21)*"', '"+(i==21)*"');")
-        cur.execute(to_insert)
 cur.close()
 con.close()
