@@ -67,5 +67,8 @@ with open('reactions.csv') as f:
             to_insert+=ls[i]+"', '"+str(float(ls[0])*float(ls[i+1]))+"', '"
         for i in range(19,22):
             to_insert+=(ls[i]+(i<21)*"', '"+(i==21)*"');")
+        cur.execute(to_insert)
+        #cur.execute("SELECT * FROM reactions")
+        #print(cur.fetchall())
 cur.close()
 con.close()
