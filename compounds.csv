@@ -1,9 +1,9 @@
-name^smiles^molecular_weight^type
-1-bromo-3-methoxybenzene^COC1=CC(=CC=C1)Br^187.03^halide
-1-bromo-4-methoxy-benzene^COC1=CC=C(C=C1)Br^187.03^halide
-(4-methoxyphenyl)boronic acid^B1(NC2=CC=CC=C2N1)C3=CC=C(C=C3)C^151.96^boronic acid
-(3-methoxyphenyl)boronic acid^B(C1=CC(=CC=C1)OC)(O)O^151.96^boronic acid
-potassium carbonate^^138.205^base
-sodium hydroxide^^39.997^base
-bis(1,1'-ethylene-3,3'-divinylimidazole-2,2'-diylidene)nickel (II) dibromide dihydrate^^683.068^catalyst
-bis-(1-methylimidazole)palladium(II) dichloride^^341.536^catalyst
+name,smiles,molecular_weight,type
+"1-bromo-3-methoxybenzene",COC1=CC(=CC=C1)Br,187.03,halide
+"1-bromo-4-methoxy-benzene",COC1=CC=C(C=C1)Br,187.03,halide
+"(4-methoxyphenyl)boronic acid",B1(NC2=CC=CC=C2N1)C3=CC=C(C=C3)C,151.96,boronic acid
+"(3-methoxyphenyl)boronic acid",B(C1=CC(=CC=C1)OC)(O)O,151.96,boronic acid
+"potassium carbonate",,138.205,base
+"sodium hydroxide",,39.997,base
+"bis(1,1'-ethylene-3,3'-divinylimidazole-2,2'-diylidene)nickel (II) dibromide dihydrate",,683.068,catalyst
+"bis-(1-methylimidazole)palladium(II) dichloride",,341.536,catalyst
