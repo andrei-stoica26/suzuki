@@ -28,7 +28,7 @@ cur.execute('CREATE TABLE reactions ( \
 );')
 
 
-reactions = pd.read_csv('new_reactions.csv',sep='\s*,\s*',engine='python').replace("'",'’')
+reactions = pd.read_csv('new_reactions.csv',sep='\s*,\s*',engine='python')
 
 
 for i in range(0, len(reactions)):
@@ -57,14 +57,13 @@ for i in range(0, len(protocol_steps)):
     else:
         cur.execute("SELECT mol_weight FROM compounds where name='"+protocol_steps.iloc[i]['reactant']+"';")
         mw = cur.fetchall()[0][0]
-        quantity = rsc*mw
+        quantity = rsc*mw*float(protocol_steps.iloc[i]['moles (if not solvent)'])
 
     cur.execute("INSERT INTO protocol_steps VALUES (?,?,?,?,?)", (protocol_steps.iloc[i]['reactant'],
                                                                   protocol_steps.iloc[i]['operation'],
                                                                   int(protocol_steps.iloc[i]['reaction']),
                                                                   int(protocol_steps.iloc[i]['step']),
                                                                   quantity))
-
 #cur.execute("SELECT * FROM protocol_steps")
 #print(cur.fetchall())
 cur.close()
