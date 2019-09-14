@@ -43,7 +43,8 @@ cur.execute('CREATE TABLE protocol_steps ( \
     operation TEXT, \
     rn_number INTEGER, \
     step_number INTEGER, \
-    quantity FLOAT \
+    quantity FLOAT, \
+    is_solvent INTEGER \
 );')
 
 protocol_steps = pd.read_csv('protocol_steps.csv')
@@ -54,15 +55,17 @@ for i in range(0, len(protocol_steps)):
     rsc = cur.fetchall()[0][0]
     if protocol_steps.iloc[i]['dilution (if solvent)'] != 0:
         quantity = rsc*protocol_steps.iloc[i]['dilution (if solvent)']
+        is_solvent=1
     else:
         cur.execute("SELECT mol_weight FROM compounds where name='"+protocol_steps.iloc[i]['reactant']+"';")
         mw = cur.fetchall()[0][0]
         quantity = rsc*mw*float(protocol_steps.iloc[i]['moles (if not solvent)'])
-    cur.execute("INSERT INTO protocol_steps VALUES (?,?,?,?,?)", (protocol_steps.iloc[i]['reactant'],
+        is_solvent=0
+    cur.execute("INSERT INTO protocol_steps VALUES (?,?,?,?,?,?)", (protocol_steps.iloc[i]['reactant'],
                                                                   protocol_steps.iloc[i]['operation'],
                                                                   int(protocol_steps.iloc[i]['reaction']),
                                                                   int(protocol_steps.iloc[i]['step']),
-                                                                  quantity))
+                                                                  quantity,is_solvent))
 
 #cur.execute("SELECT * FROM protocol_steps")
 #print(cur.fetchall())
