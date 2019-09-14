@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-con = sqlite3.connect('new.db')
+con = sqlite3.connect('suzuki.db')
 cur = con.cursor()
 cur.execute('DROP TABLE IF EXISTS compounds')
 cur.execute('CREATE TABLE compounds ( \
@@ -67,4 +67,5 @@ for i in range(0, len(protocol_steps)):
 #cur.execute("SELECT * FROM protocol_steps")
 #print(cur.fetchall())
 cur.close()
+con.commit()
 con.close()
