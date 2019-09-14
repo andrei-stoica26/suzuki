@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-con = sqlite3.connect('new_rachael_3.db')
+con = sqlite3.connect('new.db')
 cur = con.cursor()
 cur.execute('DROP TABLE IF EXISTS compounds')
 cur.execute('CREATE TABLE compounds ( \
@@ -28,7 +28,7 @@ cur.execute('CREATE TABLE reactions ( \
 );')
 
 
-reactions = pd.read_csv('new_reactions.csv',sep='\s*,\s*',engine='python')
+reactions = pd.read_csv('new_reactions.csv',sep='\s*,\s*',engine='python').replace("'",'’')
 
 
 for i in range(0, len(reactions)):
@@ -58,12 +58,12 @@ for i in range(0, len(protocol_steps)):
         cur.execute("SELECT mol_weight FROM compounds where name='"+protocol_steps.iloc[i]['reactant']+"';")
         mw = cur.fetchall()[0][0]
         quantity = rsc*mw*float(protocol_steps.iloc[i]['moles (if not solvent)'])
-
     cur.execute("INSERT INTO protocol_steps VALUES (?,?,?,?,?)", (protocol_steps.iloc[i]['reactant'],
                                                                   protocol_steps.iloc[i]['operation'],
                                                                   int(protocol_steps.iloc[i]['reaction']),
                                                                   int(protocol_steps.iloc[i]['step']),
                                                                   quantity))
+
 #cur.execute("SELECT * FROM protocol_steps")
 #print(cur.fetchall())
 cur.close()
