@@ -1,6 +1,6 @@
 from opentrons import robot, containers, instruments
-import pandas as pd
-all=pd.read_csv('new_protocol_steps.csv')
+#import pandas as pd
+#all_info=pd.read_csv('new_protocol_steps.csv')
 
 containers.create(
     'FluidX_24_5ml',
@@ -48,4 +48,4 @@ for num in range (0,rack_number):
            p1000.transfer(vol_to_dispense, source_trough4row.wells(solvent_location), rack_stock_reactants[num].wells(destination_location).top(-5), new_tip = 'never')
 p1000.drop_tip()
 robot.home()
-#print(robot.commands())
+print(robot.commands())
