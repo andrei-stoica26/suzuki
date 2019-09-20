@@ -1,0 +1,8 @@
+location,rack,reactant,reaction,step,molecular weight (g/mol),quantity (mmol),quantity (mg)
+A1,24_rack2,(4-methoxyphenyl)boronic acid,1,3,151.96,2.02,306.9592
+A1,24_rack1,1-bromo-3-methoxybenzene,1,4,187.03,2.57,480.6671
+A1,24_rack4,tetrakis(triphenylphosphine)palladium(0),1,5,1155.6,0.102,117.8712
+A2,24_rack1,1-bromo-4-methoxy-benzene,2,1,187.03,0.5,93.515
+A2,24_rack2,(3-methoxyphenyl)boronic acid,2,2,151.96,0.55,83.578
+A1,24_rack3,sodium phosphate dodecahydrate,2,3,380.12,1.75,665.21
+A2,24_rack4,palladium on activated charcoal,2,4,1080,0.0025,2.7
