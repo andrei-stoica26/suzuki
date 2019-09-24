@@ -71,6 +71,8 @@ for num in range (0,rack_number):
     vol_list.append(vols_as_str[i].split())
 solvent_location='A2'
 
+print(vol_list)
+
     
 p1000.pick_up_tip()
 for num in range (0,rack_number):

@@ -62,21 +62,20 @@ molarity=0.8
 #4 reactions
 lines=sorted(lines,key=lambda x: [int(x[3]),int(x[4])])
 
-reaction_wells=['A1','A2']
-neg_control_wells=['A3','A4']
+reaction_wells=['A1','A2','A3','A4']
+#A3 and A4 are negative control
 
-for line in lines:
-    source_location=line[0]
-    if line[1]=='big_trough':
-        source_rack=source_trough4row
-    else:
-        source_rack=rack_stock_reactants[int(line[1][-1])-1]
-    reaction_number=int(line[3])-1
-    if line[-1]=='liquid':
-        vol_to_dispense=r_scale[reaction_number]*float(line[5])
-    else: #if solid
-        vol_to_dispense=r_scale[reaction_number]*float(line[6])/molarity
-    #print(reaction_racks[reaction_number].wells())
-    p1000.distribute(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)
-    if line[1]!='24_rack4':
-        p1000.distribute(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(neg_control_wells).top(-15), air_gap=10)
+for well in reaction_wells:
+    for line in lines:
+        source_location=line[0]
+        if line[1]=='big_trough':
+            source_rack=source_trough4row
+        else:
+            source_rack=rack_stock_reactants[int(line[1][-1])-1]
+        reaction_number=int(line[3])-1
+        if line[-1]=='liquid':
+            vol_to_dispense=r_scale[reaction_number]*float(line[5])
+        else: #if solid
+            vol_to_dispense=r_scale[reaction_number]*float(line[6])/molarity
+        if int(well[-1])<3 or line[1]!='24_rack4':
+            p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)
