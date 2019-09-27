@@ -76,6 +76,7 @@ for well in reaction_wells:
         if line[-1]=='liquid':
             vol_to_dispense=r_scale[reaction_number]*float(line[5])
         else: #if solid
+            print(line[6])
             vol_to_dispense=r_scale[reaction_number]*float(line[6])/molarity
         if int(well[-1])<3 or line[1]!='24_rack4':
             p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)

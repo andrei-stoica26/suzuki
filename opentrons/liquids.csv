@@ -1,0 +1,5 @@
+location,rack,solvent,reaction,step,quantity (mL),notes
+A1,big_trough,toluene,1,1,4.2,
+A1,24_rack2,aqueous potassium carbonate,1,2,4.2,2M potassium carbonate
+A2,big_trough,water,2,5,1,
+A3,big_trough,isopropyl alcohol,2,6,1,
