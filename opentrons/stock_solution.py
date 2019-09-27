@@ -59,7 +59,7 @@ with open(path+'solids.csv') as f:
     for line in f:
         ls = line.split(',')
         locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
-        vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*copies * r_scale[int(ls[3]) - 1] * float(ls[6]) / molarity,1)) + ' ')
+        vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*copies * r_scale[int(ls[3]) - 1] * float(ls[6])/molarity,1)) + ' ')
 
 with open(path+'liquids.csv') as f:
     f.readline()
@@ -67,7 +67,7 @@ with open(path+'liquids.csv') as f:
         ls = line.split(',')
         if ls[1][-1].isdigit():
             locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
-            vols_as_str[int(ls[1][-1]) - 1] += (str(copies * r_scale[int(ls[3]) - 1] * float(ls[5])) + ' ')
+            vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*copies * r_scale[int(ls[3]) - 1] * float(ls[5])),1) + ' ')
 
 
 for num in range(0, rack_number):
