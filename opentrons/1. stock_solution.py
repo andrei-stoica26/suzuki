@@ -1,6 +1,6 @@
 #The bromides come as liquids
 from opentrons import robot, containers, instruments
-path=''
+path='C:/Users/opentrons/protocols/Suzuki/'
 containers.create(
     'FluidX_24_5ml',
     grid=(4,6),
