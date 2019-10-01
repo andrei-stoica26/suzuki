@@ -69,6 +69,7 @@ reaction_wells=['A3','A4']
 
 
 #dispense reactants
+p1000.pick_up_tip()
 for well in reaction_wells:
     for line in lines:
         source_location=line[0]
@@ -87,6 +88,8 @@ for well in reaction_wells:
             else:
                 vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[7])/float(line[8].replace('\n','')),1)
         p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)
+p1000.drop_tip()
+robot.home()
             
         
 

@@ -1,13 +1,6 @@
 #The bromides come as liquids
 from opentrons import robot, containers, instruments
 path='C:/Users/opentrons/protocols/Suzuki/'
-containers.create(
-    'FluidX_24_5ml',
-    grid=(4,6),
-    spacing=(18,18),
-    diameter=13,
-    depth=48
-    )
 
 robot.head_speed(x=18000, y=18000, z=5000, a=700, b=700)
 rack_number=3

@@ -3,6 +3,7 @@ from opentrons import robot, containers, instruments
 robot.head_speed(x=18000, y=18000, z=5000, a=700, b=700)
 path=''
 
+
 containers.create(
     '96_rack_pp',
     grid=(8,12),
@@ -69,6 +70,7 @@ reaction_wells=['A5','A6']
 
 
 #dispense reactants
+p1000.pick_up_tip()
 for well in reaction_wells:
     sum_liquids=[0]*2
     sum_solids=[0]*2
@@ -111,6 +113,7 @@ for well in reaction_wells:
             vol_to_dispense=max(sum_liquids[reaction_number]-sum_solids[reaction_number],0)
             if vol_to_dispense!=0:
                 p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)
-            
+p1000.drop_tip()
+robot.home()           
         
 
