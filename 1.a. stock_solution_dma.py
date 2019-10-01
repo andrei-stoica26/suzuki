@@ -57,7 +57,7 @@ with open(path+'solids.csv') as f:
     f.readline()
     for line in f:
         ls = line.split(',')
-        if ls[1]=='24_rack4' or ls[1]=='24_rack1':
+        if ls[1]=='24_rack4' or ls[1]=='24_rack1' or ls[1]=='24_rack3':
             continue
         locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
         vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*float(ls[12])/molarity,1)) + ' ')
