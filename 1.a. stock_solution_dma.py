@@ -26,7 +26,7 @@ p1000 = instruments.Pipette(
     name='eppendorf1000',
     axis='b',
     trash_container=trash,
-    tip_racks=tiprack_1000,
+    tip_racks=[tiprack_1000],
     max_volume=1000,
     min_volume=30,
     channels=1,
@@ -61,13 +61,6 @@ with open(path+'solids.csv') as f:
             continue
         locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
         vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*float(ls[12])/molarity,1)) + ' ')
-with open(path+'liquids.csv') as f:
-    f.readline()
-    for line in f:
-        ls = line.split(',')
-        if ls[1][-1].isdigit():
-            locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
-            vols_as_str[int(ls[1][-1]) - 1] += (str(round(conv_factor*copies*r_scale[int(ls[3])-1] * float(ls[5]),1)) + ' ')
 
 for num in range(0, rack_number):
     loc_list.append(locs_as_str[num].split())
