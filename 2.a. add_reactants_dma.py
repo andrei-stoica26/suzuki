@@ -1,6 +1,7 @@
 from opentrons import robot, containers, instruments
 
 robot.head_speed(x=18000, y=18000, z=5000, a=700, b=700)
+path=''
 
 containers.create(
     '96_rack_pp',
@@ -41,7 +42,7 @@ p1000 = instruments.Pipette(
 )
 
 r_scale=[]
-with open('reaction_details.csv') as f:
+with open(path+'reaction_details.csv') as f:
     f.readline()
     for line in f:
         ls=line.split(',')
@@ -51,7 +52,7 @@ with open('reaction_details.csv') as f:
 lines=[]
 filelist=['solids.csv','liquids.csv']
 for filename in filelist:
-    with open(filename) as f:
+    with open(path+filename) as f:
         f.readline()
         for line in f:
             z=line.replace('\n','')+','+filename.replace('s.csv','')
