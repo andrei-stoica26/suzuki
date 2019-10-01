@@ -38,7 +38,7 @@ vol_list=[]
 locs_as_str=['']*rack_number
 vols_as_str=['']*rack_number
 
-copies=8
+copies=10
 molarity=0.8
 conv_factor=1000
 
@@ -56,7 +56,6 @@ with open(path+'reaction_details.csv') as f:
 with open(path+'solids.csv') as f:
     f.readline()
     for line in f:
-        print(line)
         ls = line.split(',')
         if len(ls[8])<2: #if density not given in the csv file, that is, if the solid used in reaction is NOT a liquid here
             locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
@@ -66,7 +65,6 @@ with open(path+'solids.csv') as f:
 with open(path+'liquids.csv') as f:
     f.readline()
     for line in f:
-        print(line)
         ls = line.split(',')
         if ls[1][-1].isdigit():
             locs_as_str[int(ls[1][-1]) - 1] += (ls[0] + ' ')
@@ -75,12 +73,12 @@ with open(path+'liquids.csv') as f:
 for num in range(0, rack_number):
     loc_list.append(locs_as_str[num].split())
     vol_list.append(vols_as_str[num].split())
-solvent_location = 'A2'
+solvent_location = 'A1'
+#DMA = A1
     
 p1000.pick_up_tip()
 for num in range (0,rack_number):
     for i, destination_location in enumerate(loc_list[num]):
-        print(vol_list[num][i])
         vol_to_dispense = [vol_list[num][i]]
         #print(vol_to_dispense)
         if vol_to_dispense != 0:
