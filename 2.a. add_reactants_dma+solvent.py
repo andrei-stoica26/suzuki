@@ -6,17 +6,17 @@ path=''
 containers.create(
     '96_rack_pp',
     grid=(8,12),
-    spacing=(18,18),
-    diameter=13,
-    depth=48
+    spacing=(9,9),
+    diameter=8,
+    depth=40
     )
 
 containers.create(
     '96_rack_glass',
     grid=(8,12),
-    spacing=(18,18),
-    diameter=13,
-    depth=48
+    spacing=(9,9),
+    diameter=7,
+    depth=30
     )
 rack_number=3
 rack_stock_reactants=[]

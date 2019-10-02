@@ -6,7 +6,7 @@ path='C:/Users/opentrons/protocols/Suzuki/'
 containers.create(
     '96_rack_pp',
     grid=(8,12),
-    spacing=(1,1),
+    spacing=(9,9),
     diameter=8,
     depth=40
     )
