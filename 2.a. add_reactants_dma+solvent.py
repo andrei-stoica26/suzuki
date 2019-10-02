@@ -18,7 +18,6 @@ containers.create(
     diameter=13,
     depth=48
     )
-
 rack_number=3
 rack_stock_reactants=[]
 r_positions=['A1','A2','B1']
@@ -36,7 +35,7 @@ p1000 = instruments.Pipette(
     name='eppendorf1000',
     axis='b',
     trash_container=trash,
-    tip_racks=tiprack_1000,
+    tip_racks=[tiprack_1000],
     max_volume=1000,
     min_volume=30,
     channels=1,
@@ -58,7 +57,8 @@ for filename in filelist:
         for line in f:
             z=line.replace('\n','')+','+filename.replace('s.csv','')
             lines.append(z.split(','))
-            
+
+copies=6
 molarity=0.8
 conv_factor=1000
 #4 reactions
@@ -72,24 +72,31 @@ reaction_wells=['A3','A4']
 p1000.pick_up_tip()
 for well in reaction_wells:
     for line in lines:
+        #print(line)
         source_location=line[0]
         if line[1]=='24_rack4':
-            continue
+             continue
         if line[1]=='big_trough':
             source_rack=source_trough4row
         else:
             source_rack=rack_stock_reactants[int(line[1][-1])-1]
         reaction_number=int(line[3])-1
         if line[-1]=='liquid':
+            print(line)
             vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[5]),1)
         else: #if solid
-            if len(line[8])<2: #if density not given in the csv file, that is, if the solid used in reaction is NOT a liquid here
-                vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[6])/molarity,1)
+            if line[1]=='24_rack3':
+                #70 uL for sodium phosphate dodecahydrate
+                vol_to_dispense=conv_factor*r_scale[reaction_number]
+                #print(vol_to_dispense)
             else:
-                vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[7])/float(line[8].replace('\n','')),1)
-        p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(reaction_wells).top(-15), air_gap=10)
+                if len(line[8])<2: #if density not given in the csv file, that is, if the solid used in reaction is NOT a liquid here
+                    vol_to_dispense=round(conv_factor*float(line[12])/copies/molarity,1)
+                else:
+                    vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[7])/float(line[8].replace('\n','')),1)
+        p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(well).top(-10), air_gap=10)
 p1000.drop_tip()
-robot.home()
-            
-        
+robot.home()        
+for j in robot.commands():
+    print (j)
 
