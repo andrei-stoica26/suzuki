@@ -64,6 +64,10 @@ conv_factor=1000
 #4 reactions
 lines=sorted(lines,key=lambda x: [int(x[3]),int(x[4])])
 
+for line in lines:
+    if line[1]!='big_trough':
+        line[0]=line[0].replace('A','B')
+
 reaction_wells=['A7','A8']
 #A3 and A4 are negative control
 
@@ -79,7 +83,6 @@ for well in reaction_wells:
         if line[1]=='big_trough':
             source_rack=source_trough4row
         else:
-            source_location.replace('A','B')
             source_rack=rack_stock_reactants[int(line[1][-1])-1]
         reaction_number=int(line[3])-1
         if line[-1]=='liquid':
