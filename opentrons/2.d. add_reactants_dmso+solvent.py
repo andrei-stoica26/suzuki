@@ -4,7 +4,7 @@ robot.head_speed(x=18000, y=18000, z=5000, a=700, b=700)
 path='C:/Users/opentrons/protocols/Suzuki/'
 
 containers.create(
-    '96_rack_pp',
+    '96_pp',
     grid=(8,12),
     spacing=(9,9),
     diameter=8,
@@ -12,10 +12,10 @@ containers.create(
     )
 
 containers.create(
-    '96_rack_glass',
+    '96_glass',
     grid=(8,12),
     spacing=(9,9),
-    diameter=7,
+    diameter=6,
     depth=30
     )
 rack_number=3

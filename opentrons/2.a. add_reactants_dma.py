@@ -14,8 +14,8 @@ containers.create(
 containers.create(
     '96_glass',
     grid=(8,12),
-    spacing=(8.5,8.5),
-    diameter=7,
+    spacing=(9,9),
+    diameter=6,
     depth=30
     )
 rack_number=3
