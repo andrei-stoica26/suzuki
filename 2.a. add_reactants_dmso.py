@@ -26,7 +26,7 @@ for i in range(0,rack_number):
     rack_stock_reactants.append(containers.load("FluidX_24_5ml", r_positions[i], r_types[i]))
 tiprack_1000 = containers.load("tiprack-1000ul-H", "D3")
 source_trough4row = containers.load("trough-12row", "C2")
-reaction_racks = [containers.load("96_rack_glass", "D1"),containers.load("96_rack_pp", "D2")]
+reaction_racks = [containers.load("96_glass", "D1"),containers.load("96_pp", "D2")]
 
 trash = containers.load("point", "B3")
 
