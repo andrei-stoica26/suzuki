@@ -30,7 +30,7 @@ reaction_racks = [containers.load("96_glass", "D1"),containers.load("96_pp", "D2
 
 trash = containers.load("point", "B3")
 
-    # Pipettes SetUp
+#Pipettes setup
 p1000 = instruments.Pipette(
     name='eppendorf1000',
     axis='b',
@@ -72,14 +72,13 @@ reaction_wells=['A5','A6']
 #A3 and A4 are negative control
 
 
-#dispense reactants
+#Dispense reactants
 p1000.pick_up_tip()
 for well in reaction_wells:
     sum_liquids=[0]*2
     sum_solids=[0]*2
     for line in lines:
-        #print(line)
-        source_location=line[0]
+         source_location=line[0]
         if line[1]=='24_rack4':
              continue
         if line[1]=='big_trough':
@@ -89,8 +88,7 @@ for well in reaction_wells:
         reaction_number=int(line[3])-1
         if line[-1]=='liquid':
             vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[5]),1)
-            #print(vol_to_dispense)
-            if line[1]!='big_trough':
+              if line[1]!='big_trough':
                 p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(well).top(-15), air_gap=10)
                 sum_solids[reaction_number]+=vol_to_dispense
             else:
@@ -107,7 +105,6 @@ for well in reaction_wells:
                     vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[7])/float(line[8].replace('\n','')),1)
             p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(well).top(-10), air_gap=10)
             sum_solids[reaction_number]+=vol_to_dispense
-        #print(line[2],vol_to_dispense)
     print(sum_liquids)
     print(sum_solids)
     for line in lines:

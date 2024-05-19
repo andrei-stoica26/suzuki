@@ -30,7 +30,7 @@ reaction_racks = [containers.load("96_glass", "D1"),containers.load("96_pp", "D2
 
 trash = containers.load("point", "B3")
 
-    # Pipettes SetUp
+# Pipettes setup
 p1000 = instruments.Pipette(
     name='eppendorf1000',
     axis='b',
@@ -68,7 +68,7 @@ reaction_wells=['A1','A2']
 #A3 and A4 are negative control
 
 
-#dispense reactants
+#Dispense reactants
 p1000.pick_up_tip()
 for well in reaction_wells:
     sum_liquids=[0]*2
@@ -85,7 +85,6 @@ for well in reaction_wells:
         reaction_number=int(line[3])-1
         if line[-1]=='liquid':
             vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[5]),1)
-            #print(vol_to_dispense)
             if line[1]!='big_trough':
                 p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(well).top(-15), air_gap=10)
                 sum_solids[reaction_number]+=vol_to_dispense
@@ -95,7 +94,6 @@ for well in reaction_wells:
             if line[1]=='24_rack3':
                 #70 uL for sodium phosphate dodecahydrate
                 vol_to_dispense=conv_factor*r_scale[reaction_number]
-                #print(vol_to_dispense)
             else:
                 if len(line[8])<2: #if density not given in the csv file, that is, if the solid used in reaction is NOT a liquid here
                     vol_to_dispense=round(conv_factor*float(line[12])/copies/molarity,1)
@@ -103,8 +101,7 @@ for well in reaction_wells:
                     vol_to_dispense=round(conv_factor*r_scale[reaction_number]*float(line[7])/float(line[8].replace('\n','')),1)
             p1000.transfer(vol_to_dispense, source_rack.wells(source_location), reaction_racks[reaction_number].wells(well).top(-10), air_gap=10)
             sum_solids[reaction_number]+=vol_to_dispense
-        #print(line[2],vol_to_dispense)
-    print(sum_liquids)
+     print(sum_liquids)
     print(sum_solids)
     for line in lines:
         source_location=line[0]
