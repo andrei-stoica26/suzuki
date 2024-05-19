@@ -21,7 +21,7 @@ for i in range(0,rack_number):
     rack_stock_reactants.append(containers.load("FluidX_24_5ml", r_positions[i], r_types[i]))
 trash = containers.load("point", "B3")
 
-    # Pipettes SetUp
+#Pipettes SetUp
 p1000 = instruments.Pipette(
     name='eppendorf1000',
     axis='b',
